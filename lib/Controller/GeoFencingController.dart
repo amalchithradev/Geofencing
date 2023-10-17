@@ -7,12 +7,12 @@ class GeofenceController extends GetxController {
   Rx<Color> buttonColor = Colors.red.obs;
   RxBool isLoading = false.obs;
 
-  final double geofenceLatitude = 9.0055231;
-  final double geofenceLongitude = 76.6358014;
-  final double geofenceRadius = 5000.0;
+  final double geofenceLatitude = 10.010092;
+  final double geofenceLongitude = 76.336313;
+  final double geofenceRadius = 200.0;
 
   Future<void> checkGeofence() async {
-    isLoading.value = true; // Show loader
+    isLoading.value = true; /// Show loader
 
     final status = await Permission.location.status;
 
@@ -23,7 +23,7 @@ class GeofenceController extends GetxController {
       await _checkUserLocation();
     }
 
-    isLoading.value = false; // Hide loader
+    isLoading.value = false;
   }
 
   Future<void> _checkUserLocation() async {

@@ -9,7 +9,7 @@ class LoginController{
     final String? storedUsername = prefs.getString('username');
     final String? storedPassword = prefs.getString('password');
 
-    if (storedUsername == 'admin' && storedPassword == '1234') {
+    if (storedUsername == 'Admin' && storedPassword == '1234') {
       isFirstLaunch = true;
       prefs.setBool('isFirstLaunch', isFirstLaunch);
       Get.toNamed('/home');

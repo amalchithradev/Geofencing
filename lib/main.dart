@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hub/Screens/LockScreen.dart';
 import 'package:hub/Screens/SplashScreen.dart';
+import 'package:hub/Themes/gfThemes.dart';
 
 import 'Screens/HomeScreen.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Geofencing',
+      theme: gfTheme(context),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: [

@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hub/Themes/gfThemes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../Controller/GeoFencingController.dart';
 
 
 
@@ -17,7 +16,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final GeofenceController geofenceController = Get.put(GeofenceController());
 
   @override
   void initState() {
@@ -41,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
        ),
         child: Center(
           child: Text('Geofencing',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: width*0.08,),),
+            style: gfTheme(context).primaryTextTheme.headline1),
         ),
       ),
     );
@@ -52,7 +50,6 @@ class _SplashScreenState extends State<SplashScreen> {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         switch (prefs.getBool('isFirstLaunch')) {
           case true:
-            geofenceController.checkGeofence();
             Get.toNamed('/home');
             break;
           default:

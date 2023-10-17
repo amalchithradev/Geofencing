@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hub/Controller/LoginCredentials.dart';
+import 'package:hub/Themes/gfThemes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get/get.dart';
-import '../Controller/GeoFencingController.dart';
-
-
 
 class LockScreen extends StatefulWidget {
   const LockScreen({super.key});
@@ -14,7 +11,6 @@ class LockScreen extends StatefulWidget {
 }
 
 class _LockScreenState extends State<LockScreen> {
-  final GeofenceController geofenceController = Get.put(GeofenceController());
   TextEditingController cUserName = TextEditingController();
   TextEditingController cPassword = TextEditingController();
   LoginController loginController = LoginController();
@@ -34,8 +30,8 @@ class _LockScreenState extends State<LockScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Login',style: TextStyle(color: Colors.orange[800], fontWeight: FontWeight.w800, fontSize: width*0.1,),),
-                Text('Welcome to our system',style: TextStyle(color: Colors.black26, fontWeight: FontWeight.w600, fontSize: width*0.04,),),
+                Text('Login',style: gfTheme(context).primaryTextTheme.headline2,),
+                Text('Welcome to our system',style: gfTheme(context).primaryTextTheme.headline3),
                 SizedBox(height: height * 0.08,),
                 TextFormField(
                   controller: cUserName,
@@ -47,7 +43,7 @@ class _LockScreenState extends State<LockScreen> {
                     labelText: 'Username',
                     labelStyle: TextStyle(color: Colors.grey),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.redAccent), // Change the underline color to red when focused
+                      borderSide: BorderSide(color: Colors.redAccent),
                     ),
                   ),
                   onChanged: (value) async {
@@ -87,14 +83,13 @@ class _LockScreenState extends State<LockScreen> {
                   ),
                   child: TextButton(
                       onPressed: () async{
-                        geofenceController.checkGeofence();
                         final SharedPreferences prefs = await SharedPreferences.getInstance();
                         prefs.setString('username', cUserName.text);
                         prefs.setString('password', cPassword.text);
 
                         loginController.checkCredentialsAndNavigate();
                       },
-                      child: Text('Login',style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: width*0.05,))
+                      child: Text('Login',style: gfTheme(context).primaryTextTheme.headline4)
                   ),
                 )
               ],
